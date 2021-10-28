@@ -1,16 +1,31 @@
 <?php
-require "../config.php";
 
+session_start();
+// $_session['user]
+if(empty($_SESSION['user'])){
+  header("LOCATION: ../login.php");
+}
+
+require "../config.php";
 require "../lib/category.php";
+require "../lib/validation.php";
+
 if(isset($_POST['title'])){
 
 
-   $res =  add($_POST['title']);
-   if($res){
+  if(is_empty($_POST['title'])){
     
+    $res =  add($_POST['title']);
+    if($res){
       header("LOCATION: index.php");
-    
    }
+
+  }else{
+    echo "warning";
+  }
+
+
+
 
 }
 
@@ -62,7 +77,7 @@ if(isset($_POST['title'])){
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"><?= $_SESSION['user']['name']; ?></a>
         </div>
       </div>
 
