@@ -3,4 +3,4 @@
 define("SERVER","localhost");
 define("USER","root");
 define("PASS","");
-define("DB","blog");
+define("DB","blog2");

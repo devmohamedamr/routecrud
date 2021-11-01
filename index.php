@@ -3,9 +3,12 @@ require "config.php";
 
 require "lib/category.php";
 
+require "lib/blog.php";
+
+
 $data =  select();
 
-
+$blogs  = selectblog();
 // print_r($data);
 
 
@@ -97,113 +100,23 @@ $data =  select();
       <section class="section bg-gray">
         <div class="container">
 
+        <?php foreach($blogs as $blog): ?>
           <div class="card mb-30">
             <div class="row">
               <div class="col-12 col-md-4 align-self-center">
-                <a href="blog-single.html"><img src="assets/img/blog-1.jpg" alt="..."></a>
+                <a href="blog-single.html"><img src="assets/img/<?= $blog['img'] ?>" alt="..."></a>
               </div>
 
               <div class="col-12 col-md-8">
                 <div class="card-block">
-                  <h4 class="card-title">New features will add to dashboard soon</h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title.</p>
+                  <h4 class="card-title"><?= $blog['title']; ?></h4>
+                  <p class="card-text"><?= $blog['description']; ?></p>
                   <a class="fw-600 fs-12" href="blog-single.html">Read more <i class="fa fa-chevron-right fs-9 pl-8"></i></a>
                 </div>
               </div>
             </div>
           </div>
-
-
-          <div class="card mb-30">
-            <div class="row">
-              <div class="col-12 col-md-4 align-self-center">
-                <a href="blog-single.html"><img src="assets/img/blog-2.jpg" alt="..."></a>
-              </div>
-
-              <div class="col-12 col-md-8">
-                <div class="card-block">
-                  <h4 class="card-title">New features will add to dashboard soon</h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title.</p>
-                  <a class="fw-600 fs-12" href="blog-single.html">Read more <i class="fa fa-chevron-right fs-9 pl-8"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-          <div class="card mb-30">
-            <div class="row">
-              <div class="col-12 col-md-4 align-self-center">
-                <a href="blog-single.html"><img src="assets/img/blog-3.jpg" alt="..."></a>
-              </div>
-
-              <div class="col-12 col-md-8">
-                <div class="card-block">
-                  <h4 class="card-title">We've just passed 1,000 customers!</h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title.</p>
-                  <a class="fw-600 fs-12" href="blog-single.html">Read more <i class="fa fa-chevron-right fs-9 pl-8"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-          <div class="card mb-30">
-            <div class="row">
-              <div class="col-12 col-md-4 align-self-center">
-                <a href="blog-single.html"><img src="assets/img/blog-4.jpg" alt="..."></a>
-              </div>
-
-              <div class="col-12 col-md-8">
-                <div class="card-block">
-                  <h4 class="card-title">We updated to version 1.1</h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title.</p>
-                  <a class="fw-600 fs-12" href="blog-single.html">Read more <i class="fa fa-chevron-right fs-9 pl-8"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-          <div class="card mb-30">
-            <div class="row">
-              <div class="col-12 col-md-4 align-self-center">
-                <a href="blog-single.html"><img src="assets/img/blog-5.jpg" alt="..."></a>
-              </div>
-
-              <div class="col-12 col-md-8">
-                <div class="card-block">
-                  <h4 class="card-title">Read a getting started tutorial</h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title.</p>
-                  <a class="fw-600 fs-12" href="blog-single.html">Read more <i class="fa fa-chevron-right fs-9 pl-8"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-          <div class="card mb-30">
-            <div class="row">
-              <div class="col-12 col-md-4 align-self-center">
-                <a href="blog-single.html"><img src="assets/img/blog-6.jpg" alt="..."></a>
-              </div>
-
-              <div class="col-12 col-md-8">
-                <div class="card-block">
-                  <h4 class="card-title">TheSaaS has just started!</h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title.</p>
-                  <a class="fw-600 fs-12" href="blog-single.html">Read more <i class="fa fa-chevron-right fs-9 pl-8"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
+        <?php endforeach; ?>    
 
 
           <nav class="flexbox mt-30">
