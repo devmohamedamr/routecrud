@@ -15,7 +15,7 @@ require "../lib/blog.php";
 
 if(isset($_POST['title'])){
     $title = $_POST['title'];
-    $description = $_POST['description'];
+    $description = addslashes($_POST['description']);
     $category = $_POST['category'];
     $user_id = $_SESSION['user']['id'];
 

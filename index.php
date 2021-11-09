@@ -8,7 +8,18 @@ require "lib/blog.php";
 
 $data =  select();
 
-$blogs  = selectblog();
+if(isset($_GET['category'])){
+
+  $id = (is_int($_GET['category'])) ? $_GET['category'] : 1;
+
+  $blogs  = selectblog($id);
+
+}else{
+  // echo $_GET['category'];die;
+
+  $blogs  = selectblog();
+}
+
 // print_r($data);
 
 
@@ -55,7 +66,7 @@ $blogs  = selectblog();
         <div class="topbar-right">
           <ul class="topbar-nav nav">
           <?php foreach($data as $nav): ?>
-            <li class="nav-item"><a class="nav-link" href="index.html"><?= $nav['title']; ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php?category=<?= $nav['id']; ?>"><?= $nav['title']; ?></a></li>
           <?php endforeach; ?>
           </ul>
         </div>
@@ -104,14 +115,14 @@ $blogs  = selectblog();
           <div class="card mb-30">
             <div class="row">
               <div class="col-12 col-md-4 align-self-center">
-                <a href="blog-single.html"><img src="assets/img/<?= $blog['img'] ?>" alt="..."></a>
+                <a href="singleblog.php?id=<?= $blog['id']; ?>"><img src="assets/img/<?= $blog['img'] ?>" alt="..."></a>
               </div>
 
               <div class="col-12 col-md-8">
                 <div class="card-block">
                   <h4 class="card-title"><?= $blog['title']; ?></h4>
                   <p class="card-text"><?= $blog['description']; ?></p>
-                  <a class="fw-600 fs-12" href="blog-single.html">Read more <i class="fa fa-chevron-right fs-9 pl-8"></i></a>
+                  <a class="fw-600 fs-12" href="singleblog.php?id=<?= $blog['id']; ?>">Read more <i class="fa fa-chevron-right fs-9 pl-8"></i></a>
                 </div>
               </div>
             </div>
